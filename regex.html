@@ -1,0 +1,68 @@
+<html>
+<head>
+<style type="text/css">
+textarea {
+  width: 900px;
+  height: 400px;
+}
+input {
+  width: 300px;
+  margin: 5px 0;
+}
+#container {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#middle {
+  text-align: center;
+}
+</style>
+</head>
+<body>
+  <div id="container">
+    <h1>Regular Expression Replacer</h1>
+    <p>
+      Put the text you'd like to replace in the first text box, the
+      <a href="http://developer.mozilla.org/en/JavaScript/Guide/Regular_Expressions">Regular Expression</a>
+      and replacement text, and click "Replace All" and then the replaced text
+      will be placed in the bottom text box.
+    </p>
+    <div>
+      <textarea id="from" placeholder="Text to Replace"></textarea>
+    </div>
+    <div id="middle">
+      <div>
+        <input placeholder="Regular Expression (eg: (\s+)replace-me )" id="regex" />
+      </div>
+      <div>
+        <input placeholder="Replace With (eg: $1replaced-text )" id="replace" />
+      </div>
+      <div>
+        <button id="go">Replace All</button>
+      </div>
+    </div>
+    <div>
+      <textarea id="output" placeholder="Result"></textarea>
+    </div>
+  </div>
+<script>
+(function () {
+  var button  = document.getElementById('go')
+    , regex   = document.getElementById('regex')
+    , replace = document.getElementById('replace')
+    , from    = document.getElementById('from')
+    , output  = document.getElementById('output')
+    ;
+  button.addEventListener('click', function () {
+    var regexObj  = new RegExp(regex.value, 'g')
+      , inputStr  = from.value
+      , outputStr
+      ;
+    outputStr = inputStr.replace(regexObj, replace.value);
+    output.value = outputStr;
+  });
+})()
+</script>
+</body>
+<html>
